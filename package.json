@@ -1,0 +1,7 @@
+{
+  "name": "minoss-hue",
+  "version": "0.1.0",
+  "dependencies": {
+    "node-hue-api": "^1.2.0"
+  }
+}
