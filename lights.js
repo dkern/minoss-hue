@@ -1,17 +1,18 @@
 "use strict";
 
 var hue = require("node-hue-api");
-var api = hue.HueApi;
+var HueApi = hue.HueApi;
 var formatter = require("./src/formatter");
 
 module.exports = function(config, params, respond, error) {
-    var mode = params["mode"] || "get";
-    var bridge = params["bridge"] || "default";
-    var con = new api(config.bridges[bridge].ip, config.bridges[bridge].username);
+    var mode = params.mode || "get";
+    // noinspection JSUnresolvedVariable
+    var bridge = params.bridge || "default";
+    var con = new HueApi(config.bridges[bridge].ip, config.bridges[bridge].username);
 
     // set a state preset to a specified light
     if( mode === "set" ) {
-        var state = params["state"];
+        var state = params.state;
 
         if( !params.id ) {
             return error("no light id given");

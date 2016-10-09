@@ -1,17 +1,18 @@
 "use strict";
 
 var hue = require("node-hue-api");
-var api = hue.HueApi;
+var HueApi = hue.HueApi;
 var formatter = require("./src/formatter");
 
 module.exports = function(config, params, respond, error) {
-    var mode = params["mode"] || "get";
-    var bridge = params["bridge"] || "default";
-    var con = new api(config.bridges[bridge].ip, config.bridges[bridge].username);
+    var mode = params.mode || "get";
+    // noinspection JSUnresolvedVariable
+    var bridge = params.bridge || "default";
+    var con = new HueApi(config.bridges[bridge].ip, config.bridges[bridge].username);
 
     // set scene to a group
     if( mode === "set" ) {
-        var group = params["group"];
+        var group = params.group;
 
         if( !params.id ) {
             return error("no scene id given");
