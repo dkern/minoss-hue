@@ -9,10 +9,11 @@ module.exports = {
      * @return {*}
      */
     propertyNames: function(data, output) {
+        // only loop objects
         if( Object.prototype.toString.call(data) === "[object Object]" ) {
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
-                    // walk recursive
+                    // walk recursive over sub-objects
                     if (Object.prototype.toString.call(data[key]) === "[object Object]") {
                         data[key] = this.propertyNames(data[key], output);
                     }
@@ -25,7 +26,8 @@ module.exports = {
                         newKey = "id_" + newKey;
                     }
 
-                    if (key !== newKey) {
+                    // if key was changes add under new one and remove old
+                    if( key !== newKey ) {
                         data[newKey] = data[key];
                         delete data[key];
                     }
