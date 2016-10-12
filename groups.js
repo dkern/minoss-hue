@@ -1,59 +1,18 @@
 "use strict";
 
-var hue = require("node-hue-api");
-var HueApi = hue.HueApi;
-var formatter = require("./src/formatter");
-
 module.exports = function(config, params, respond, error) {
-    var mode = params.mode || "get";
     // noinspection JSUnresolvedVariable
-    var bridge = params.bridge || "default";
-    var con = new HueApi(config.bridges[bridge].ip, config.bridges[bridge].username);
+    var action = params.action || params.a || "search";
 
-    // set a state preset to a specified light group
-    if( mode === "set" ) {
-        var state = params.state;
+    switch(action) {
+        case "set":
+            var setHandler = require("./src/groups/set");
+            setHandler(config, params, respond, error);
+            break;
 
-        if( !params.id ) {
-            return error("no group id given");
-        }
-
-        if( !state ) {
-            return error("no state name given");
-        }
-
-        if( !config.groups.states[state] ) {
-            return error("unknown state name");
-        }
-
-        con.setGroupLightState(params.id, config.groups.states[state], function(err, result) {
-            if( err ){
-                return error(err.message);
-            }
-
-            respond({success: true, result: formatter.propertyNames(result, params.output)});
-        });
-    }
-    else {
-        // get a specific light groups
-        if( params.id ) {
-            con.getGroup(params.id, function(err, group) {
-                if( err ){
-                    return error(err.message);
-                }
-
-                respond({success: true, group: formatter.propertyNames(group, params.output)});
-            });
-        }
-        // get all light groups
-        else {
-            con.getGroups(function(err, groups) {
-                if( err ){
-                    return error(err.message);
-                }
-
-                respond({success: true, groups: formatter.propertyNames(groups, params.output)});
-            });
-        }
+        default:
+            var getHandler = require("./src/groups/get");
+            getHandler(config, params, respond, error);
+            break;
     }
 };
