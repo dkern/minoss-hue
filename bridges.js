@@ -20,9 +20,9 @@ module.exports = function(config, params, respond, error) {
             stateHandler(config, params, respond, error);
             break;
 
-        case "users":
-            var usersHandler = require("./src/bridges/users");
-            usersHandler(config, params, respond, error);
+        case "user":
+            var userHandler = require("./src/bridges/user");
+            userHandler(config, params, respond, error);
             break;
 
         case "version":
