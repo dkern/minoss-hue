@@ -101,7 +101,7 @@ state   ->  s
 
 Example:
 
-> http://localhost:8080/hue/lights?**action**=set&**id**=1&**state**=on
+> http://localhost:8080/hue/lights?**action**=set&**id**=1&**state**=on  
 > http://localhost:8080/hue/lights?**a**=set&**i**=1&**s**=on
 
 
