@@ -22,6 +22,9 @@ module.exports = function(config, params, respond, error) {
         return error("no light id given");
     }
 
+    // try to translate id name to id
+    id = isNaN(id) && config.lights.names[id] ? config.lights.names[id] : id;
+
     // noinspection JSUnresolvedVariable
     var state = params.state || params.s;
 

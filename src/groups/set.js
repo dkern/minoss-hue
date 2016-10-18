@@ -22,6 +22,9 @@ module.exports = function(config, params, respond, error) {
         return error("no groups id given");
     }
 
+    // try to translate id name to id
+    id = isNaN(id) && config.groups.names[id] ? config.groups.names[id] : id;
+
     // noinspection JSUnresolvedVariable
     var state = params.state || params.s;
 

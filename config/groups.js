@@ -2,6 +2,14 @@
 
 module.exports = {
     /**
+     * possibility to set names for internal ids of the bride
+     * @type {object}
+     */
+    names: {
+        // bedroom: 1
+    },
+
+    /**
      * predefined states for groups
      * @type {object}
      */

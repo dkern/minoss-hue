@@ -26,6 +26,9 @@ module.exports = function(config, params, respond, error) {
     // noinspection JSUnresolvedVariable
     var id = params.id || params.i;
     if( id ) {
+        // try to translate id name to id
+        id = isNaN(id) && config.groups.names[id] ? config.groups.names[id] : id;
+
         con.getGroup(id, function(err, group) {
             if( err ){
                 return error(err.message);

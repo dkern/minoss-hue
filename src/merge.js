@@ -6,7 +6,7 @@
  * @param {object} source...
  * @returns {object}
  */
-module.exports = function(target, source) {
+function merge(target, source) {
     for( var i = 1; i < arguments.length; i++ ) {
         var obj = arguments[i];
 
@@ -27,4 +27,6 @@ module.exports = function(target, source) {
     }
 
     return target;
-};
+}
+
+module.exports = merge;

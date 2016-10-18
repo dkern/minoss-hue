@@ -26,6 +26,9 @@ module.exports = function(config, params, respond, error) {
     // noinspection JSUnresolvedVariable
     var id = params.id || params.i;
     if( id ) {
+        // try to translate id name to id
+        id = isNaN(id) && config.lights.names[id] ? config.lights.names[id] : id;
+
         con.getLightStatus(id, function(err, light) {
             if( err ){
                 return error(err.message);
