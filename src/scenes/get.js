@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * get scene information
@@ -7,27 +7,27 @@
  * @param {number} id|i
  */
 
-var hue = require("node-hue-api");
-var hueBridge = require("../bridge");
-var HueApi = hue.HueApi;
-var formatter = require("../formatter");
+let hue = require('node-hue-api');
+let hueBridge = require('../bridge');
+let HueApi = hue.HueApi;
+let formatter = require('../formatter');
 
-module.exports = function(config, params, respond, error) {
-    var bridge = hueBridge(config, params);
+module.exports = (config, params, respond, error) => {
+    let bridge = hueBridge(config, params);
 
     // bridge not known
-    if( !bridge ) {
-        return error("no or unknown bridge specified");
+    if (!bridge) {
+        return error('no or unknown bridge specified');
     }
 
-    var con = new HueApi(bridge.ip, bridge.username);
+    let con = new HueApi(bridge.ip, bridge.username);
 
     // get a specific scene
     // noinspection JSUnresolvedVariable
-    var id = params.id || params.i;
-    if( id ) {
-        con.getScene(id, function(err, scene) {
-            if( err ){
+    let id = params.id || params.i;
+    if (id) {
+        con.getScene(id, (err, scene) => {
+            if (err) {
                 return error(err.message);
             }
 
@@ -40,8 +40,8 @@ module.exports = function(config, params, respond, error) {
 
     // get all scenes
     else {
-        con.getScenes(function(err, scenes) {
-            if( err ){
+        con.getScenes((err, scenes) => {
+            if (err) {
                 return error(err.message);
             }
 

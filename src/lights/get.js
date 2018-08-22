@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * get light information
@@ -7,30 +7,30 @@
  * @param {number} id|i
  */
 
-var hue = require("node-hue-api");
-var hueBridge = require("../bridge");
-var HueApi = hue.HueApi;
-var formatter = require("../formatter");
+let hue = require('node-hue-api');
+let hueBridge = require('../bridge');
+let HueApi = hue.HueApi;
+let formatter = require('../formatter');
 
-module.exports = function(config, params, respond, error) {
-    var bridge = hueBridge(config, params);
+module.exports = (config, params, respond, error) => {
+    let bridge = hueBridge(config, params);
 
     // bridge not known
-    if( !bridge ) {
-        return error("no or unknown bridge specified");
+    if (!bridge) {
+        return error('no or unknown bridge specified');
     }
 
-    var con = new HueApi(bridge.ip, bridge.username);
+    let con = new HueApi(bridge.ip, bridge.username);
 
     // get a specific light when id is set
     // noinspection JSUnresolvedVariable
-    var id = params.id || params.i;
-    if( id ) {
+    let id = params.id || params.i;
+    if (id) {
         // try to translate id name to id
         id = isNaN(id) && config.lights.names[id] ? config.lights.names[id] : id;
 
-        con.getLightStatus(id, function(err, light) {
-            if( err ){
+        con.getLightStatus(id, (err, light) => {
+            if (err) {
                 return error(err.message);
             }
 
@@ -43,8 +43,8 @@ module.exports = function(config, params, respond, error) {
 
     // get all lights
     else {
-        con.getLights(function(err, lights) {
-            if( err ){
+        con.getLights((err, lights) => {
+            if (err) {
                 return error(err.message);
             }
 

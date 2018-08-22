@@ -1,37 +1,36 @@
-"use strict";
+'use strict';
 
-module.exports = function(config, params, respond, error) {
-    // noinspection JSUnresolvedVariable
-    var action = params.action || params.a || "search";
+module.exports = (config, params, respond, error) => {
+    let action = params.action || params.a || 'search';
 
-    switch(action) {
-        case "config":
-            var configHandler = require("./src/bridges/config");
+    switch (action) {
+        case 'config':
+            let configHandler = require('./src/bridges/config');
             configHandler(config, params, respond, error);
             break;
 
-        case "description":
-            var descriptionHandler = require("./src/bridges/description");
+        case 'description':
+            let descriptionHandler = require('./src/bridges/description');
             descriptionHandler(config, params, respond, error);
             break;
 
-        case "state":
-            var stateHandler = require("./src/bridges/state");
+        case 'state':
+            let stateHandler = require('./src/bridges/state');
             stateHandler(config, params, respond, error);
             break;
 
-        case "user":
-            var userHandler = require("./src/bridges/user");
+        case 'user':
+            let userHandler = require('./src/bridges/user');
             userHandler(config, params, respond, error);
             break;
 
-        case "version":
-            var versionHandler = require("./src/bridges/version");
+        case 'version':
+            let versionHandler = require('./src/bridges/version');
             versionHandler(config, params, respond, error);
             break;
 
         default:
-            var searchHandler = require("./src/bridges/search");
+            let searchHandler = require('./src/bridges/search');
             searchHandler(config, params, respond, error);
             break;
     }

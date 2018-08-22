@@ -1,12 +1,11 @@
-"use strict";
+'use strict';
 
-module.exports = function(config, params, respond, error) {
-    // noinspection JSUnresolvedVariable
-    var action = params.action || params.a || "get";
+module.exports = (config, params, respond, error) => {
+    let action = params.action || params.a || 'get';
 
-    switch(action) {
+    switch (action) {
         default:
-            var getHandler = require("./src/schedules/get");
+            let getHandler = require('./src/schedules/get');
             getHandler(config, params, respond, error);
             break;
     }

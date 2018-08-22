@@ -1,43 +1,43 @@
-"use strict";
+'use strict';
 
-var json = require("./json");
-var merge = require("./merge");
+let json = require('./json');
+let merge = require('./merge');
 
 /**
  * helper function to create state object
- * @param {string} state
+ * @param {string|array} states
  * @param {string} type
  * @param {object} config
  * @param {function} error
  * @returns {boolean|object}
  */
-module.exports = function(state, type, config, error) {
-    var jsonObj, build = {};
-    state = state.indexOf("|") !== -1 ? state.split("|") : [state];
+module.exports = (states, type, config, error) => {
+    let jsonObj, build = {};
+    states = states.indexOf('|') !== -1 ? states.split('|') : [states];
 
-    for( var i = 0; i < state.length; i++ ) {
+    states.forEach(state => {
         // skip empty entries
-        if( state[i] === "" ) {
-            continue;
+        if (state === '') {
+            return;
         }
 
         // merge from config
-        if( config[type].states[state[i]] ) {
-            merge(build, config[type].states[state[i]]);
+        if (config[type].states[state]) {
+            merge(build, config[type].states[state]);
         }
 
         // merge from json string
-        else if( (jsonObj = json(state[i])) ) {
+        else if ((jsonObj = json(state))) {
             merge(build, jsonObj);
         }
 
         // error on unknown entry
         else {
-            return error("state '" + state[i] + "' is unknown");
+            return error(`state "${state}" is unknown`);
         }
 
         jsonObj = null;
-    }
+    });
 
     return build;
 };

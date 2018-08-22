@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
 /**
  * check and try to parse a json string
  * @param {string} str
  * @returns {boolean|object}
  */
-module.exports = function(str){
+module.exports = str => {
     try {
-        var json = JSON.parse(str);
+        let json = JSON.parse(str);
 
-        if( json && typeof json === "object") {
+        if (json && typeof json === 'object') {
             return json;
         }
     }

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * get version information of a bridge
@@ -6,24 +6,24 @@
  * @param {string} bridge|b
  */
 
-var hue = require("node-hue-api");
-var hueBridge = require("../bridge");
-var HueApi = hue.HueApi;
-var formatter = require("../formatter");
+let hue = require('node-hue-api');
+let hueBridge = require('../bridge');
+let HueApi = hue.HueApi;
+let formatter = require('../formatter');
 
-module.exports = function(config, params, respond, error) {
-    var bridge = hueBridge(config, params);
+module.exports = (config, params, respond, error) => {
+    let bridge = hueBridge(config, params);
 
     // bridge not known
-    if( !bridge ) {
-        return error("no or unknown bridge specified");
+    if (!bridge) {
+        return error('no or unknown bridge specified');
     }
 
-    var con = new HueApi(bridge.ip, bridge.username);
+    let con = new HueApi(bridge.ip, bridge.username);
 
     // get version for bridge
-    con.getVersion(function(err, version) {
-        if( err ){
+    con.getVersion((err, version) => {
+        if (err) {
             return error(err.message);
         }
 

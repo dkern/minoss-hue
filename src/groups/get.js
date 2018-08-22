@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * get group information
@@ -7,30 +7,30 @@
  * @param {number} id|i
  */
 
-var hue = require("node-hue-api");
-var hueBridge = require("../bridge");
-var HueApi = hue.HueApi;
-var formatter = require("../formatter");
+let hue = require('node-hue-api');
+let hueBridge = require('../bridge');
+let HueApi = hue.HueApi;
+let formatter = require('../formatter');
 
-module.exports = function(config, params, respond, error) {
-    var bridge = hueBridge(config, params);
+module.exports = (config, params, respond, error) => {
+    let bridge = hueBridge(config, params);
 
     // bridge not known
-    if( !bridge ) {
-        return error("no or unknown bridge specified");
+    if (!bridge) {
+        return error('no or unknown bridge specified');
     }
 
-    var con = new HueApi(bridge.ip, bridge.username);
+    let con = new HueApi(bridge.ip, bridge.username);
 
     // get a specific light groups
     // noinspection JSUnresolvedVariable
-    var id = params.id || params.i;
-    if( id ) {
+    let id = params.id || params.i;
+    if (id) {
         // try to translate id name to id
         id = isNaN(id) && config.groups.names[id] ? config.groups.names[id] : id;
 
-        con.getGroup(id, function(err, group) {
-            if( err ){
+        con.getGroup(id, (err, group) => {
+            if (err) {
                 return error(err.message);
             }
 
@@ -43,8 +43,8 @@ module.exports = function(config, params, respond, error) {
 
     // get all light groups
     else {
-        con.getGroups(function(err, groups) {
-            if( err ){
+        con.getGroups((err, groups) => {
+            if (err) {
                 return error(err.message);
             }
 

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * set light information
@@ -8,48 +8,48 @@
  * @param {string} state|s
  */
 
-var hue = require("node-hue-api");
-var hueBridge = require("../bridge");
-var states = require("../state");
-var HueApi = hue.HueApi;
-var formatter = require("../formatter");
+let hue = require('node-hue-api');
+let hueBridge = require('../bridge');
+let states = require('../state');
+let HueApi = hue.HueApi;
+let formatter = require('../formatter');
 
-module.exports = function(config, params, respond, error) {
+module.exports = (config, params, respond, error) => {
     // check if a light id is set
     // noinspection JSUnresolvedVariable
-    var id = params.id || params.i;
-    if( !id ) {
-        return error("no light id given");
+    let id = params.id || params.i;
+    if (!id) {
+        return error('no light id given');
     }
 
     // try to translate id name to id
     id = isNaN(id) && config.lights.names[id] ? config.lights.names[id] : id;
 
     // noinspection JSUnresolvedVariable
-    var state = params.state || params.s;
+    let state = params.state || params.s;
 
     // check if a state name was given
-    if( !state ) {
-        return error("no state name given");
+    if (!state) {
+        return error('no state name given');
     }
 
     // check is state is known
-    state = states(state, "lights", config, error);
-    if( !state ) {
+    state = states(state, 'lights', config, error);
+    if (!state) {
         return;
     }
 
-    var bridge = hueBridge(config, params);
+    let bridge = hueBridge(config, params);
 
     // bridge not known
-    if( !bridge ) {
-        return error("no or unknown bridge specified");
+    if (!bridge) {
+        return error('no or unknown bridge specified');
     }
 
-    var con = new HueApi(bridge.ip, bridge.username);
+    let con = new HueApi(bridge.ip, bridge.username);
 
-    con.setLightState(id, state, function(err, result) {
-        if( err ){
+    con.setLightState(id, state, (err, result) => {
+        if (err) {
             return error(err.message);
         }
 

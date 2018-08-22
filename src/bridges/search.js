@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * search for hue bridges in network
@@ -6,13 +6,13 @@
  * none
  */
 
-var hue = require("node-hue-api");
-var formatter = require("../formatter");
+let hue = require('node-hue-api');
+let formatter = require('../formatter');
 
-module.exports = function(config, params, respond, error) {
+module.exports = (config, params, respond, error) => {
     // search for bridges in network
-    hue.nupnpSearch(function(err, bridges) {
-        if( err ){
+    hue.nupnpSearch((err, bridges) => {
+        if (err) {
             return error(err);
         }
 
