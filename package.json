@@ -1,11 +1,11 @@
 {
   "name": "minoss-hue",
   "title": "Philips Hue Module for Minoss",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Philips Hue Module for Minoss",
   "main": "package.json",
-  "homepage": "https://github.com/eisbehr-/minoss-hue",
-  "bugs": "https://github.com/eisbehr-/minoss-hue/issues",
+  "homepage": "https://github.com/dkern/minoss-hue",
+  "bugs": "https://github.com/dkern/minoss-hue/issues",
   "author": {
     "name": "Daniel 'Eisbehr' Kern",
     "email": "jquery@eisbehr.de",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:eisbehr-/minoss-hue.git"
+    "url": "git@github.com:dkern/minoss-hue.git"
   },
   "keywords": [
     "minoss",

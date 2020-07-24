@@ -1,9 +1,9 @@
 # Philips Hue for Minoss
-[![GitHub version](https://badge.fury.io/gh/eisbehr-%2Fminoss-hue.svg)](http://github.com/eisbehr-/minoss-hue)
+[![GitHub version](https://badge.fury.io/gh/dkern%2Fminoss-hue.svg)](http://github.com/dkern/minoss-hue)
 [![NPM version](https://badge.fury.io/js/minoss-hue.svg)](http://www.npmjs.org/package/minoss-hue)
-[![Dependency version](https://david-dm.org/eisbehr-/minoss-hue.png)](https://david-dm.org/eisbehr-/minoss-hue)
+[![Dependency version](https://david-dm.org/dkern/minoss-hue.png)](https://david-dm.org/dkern/minoss-hue)
 
-This module adds support for controlling Philips Hue devices to [Minoss](https://github.com/eisbehr-/minoss) server.
+This module adds support for controlling Philips Hue devices to [Minoss](https://github.com/dkern/minoss) server.
 The API communication is based on [`node-hue-api`](https://www.npmjs.com/package/node-hue-api).
 
 
@@ -219,7 +219,7 @@ The following tables describe the available scripts and parameters of the module
 
 
 ## Bugs / Feature request
-Please [report](http://github.com/eisbehr-/minoss-hue/issues) bugs and feel free to [ask](http://github.com/eisbehr-/minoss-hue/issues) for new features directly on GitHub.
+Please [report](http://github.com/dkern/minoss-hue/issues) bugs and feel free to [ask](http://github.com/dkern/minoss-hue/issues) for new features directly on GitHub.
 
 
 ## License
